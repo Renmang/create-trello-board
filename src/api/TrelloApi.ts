@@ -32,7 +32,7 @@ export default class TrelloApi {
 
   async createBoard(name: string): Promise<string | null> {
     const url = this.buildUrlWithAuth(
-      `/boards?name=${name}&defaultLists=false`
+      `/boards?name=${name}&defaultLists=false&prefs_permissionLevel=public`
     );
     return axios.post(url).then((res) => {
       const { id, url } = res.data;

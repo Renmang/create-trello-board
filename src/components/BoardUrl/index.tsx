@@ -9,7 +9,7 @@ const BoardUrl = () => {
       status="success"
       title="Successfully created Bob Dylan Trello board!"
       extra={[
-        <Button type="primary" href={boardUrl!}>
+        <Button type="primary" href={boardUrl!} key="goToUrl">
           Go to board
         </Button>,
       ]}

@@ -13,3 +13,8 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.ant-upload-list {
+  display: flex;
+  justify-content: center;
+}
