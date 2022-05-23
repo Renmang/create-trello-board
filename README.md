@@ -28,3 +28,10 @@ Small example file:
 > VITE_TOKEN=TRELLO TOKEN
 > VITE_SPOTIFY_TOKEN=SPOTIFY TOKEN
 > ```
+
+### Where to get the credentials?
+
+- APP_KEY & TOKEN: https://trello.com/app-key/
+- SPOTIFY_TOKEN: https://developer.spotify.com/console/get-track/
+
+  > Click on the 'get token' button
