@@ -7,8 +7,6 @@ export default class TrelloApi {
   basePath = "https://api.trello.com/1";
   boardId: string | null;
   boardUrl: string | null;
-  spotifyToken =
-    "BQCK2Af8lQXLLCLQF0ssBoTOxh7N9NCJT0gQrtc4w5ncZB45IDKU4BHhuROMvoYAfc4vKBQdLRGZBXQVrA4";
 
   constructor() {
     this.appKey = import.meta.env.VITE_APP_KEY;
