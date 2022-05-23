@@ -1,0 +1,15 @@
+.layout {
+  height: 100vh;
+  place-content: center;
+}
+
+.uploader {
+  height: 300;
+  margin-bottom: 4em;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
