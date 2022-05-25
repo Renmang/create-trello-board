@@ -1,10 +1,43 @@
 import axios from "axios";
 
 export default class SpotifyApi {
-  spotifyToken: string;
+  access_token: string | undefined;
+  clientId: string;
+  clientSecret: string;
 
   constructor() {
-    this.spotifyToken = import.meta.env.VITE_SPOTIFY_TOKEN;
+    this.clientId = import.meta.env.VITE_CLIENT_ID;
+    this.clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+  }
+
+  async getSpotifyToken(): Promise<string | null> {
+    if (this.access_token) {
+      return this.access_token;
+    } else {
+      return await axios
+        .post(
+          "https://accounts.spotify.com/api/token",
+          "grant_type=client_credentials",
+          { headers: this.buildHeader() }
+        )
+        .then((res) => {
+          const { access_token } = res.data;
+          this.access_token = access_token;
+          return access_token;
+        })
+        .catch((res) => {
+          console.error(res);
+          return null;
+        });
+    }
+  }
+
+  buildHeader(): { Authorization: string; "Content-Type": string } {
+    const auth = btoa(`${this.clientId}:${this.clientSecret}`);
+    return {
+      Authorization: `Basic ${auth}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
   }
 
   async getAlbumImage(album: string): Promise<string | null> {
@@ -13,8 +46,10 @@ export default class SpotifyApi {
       name
     )}%20artist:bob%20dylan&type=album`;
 
+    const access_token = await this.getSpotifyToken();
+
     return await axios
-      .get(url, { headers: { Authorization: `Bearer ${this.spotifyToken}` } })
+      .get(url, { headers: { Authorization: `Bearer ${access_token}` } })
       .then((res) => {
         const albumUrl = res.data.albums.items[0].images[1].url;
         return albumUrl;
