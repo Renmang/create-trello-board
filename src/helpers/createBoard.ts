@@ -14,6 +14,8 @@ const createBoard = async (
 ): Promise<boolean> => {
   try {
     dispatch({ type: "start-loading" });
+    //initialize spotify token
+    await Spotify.getSpotifyToken();
     await Trello.createBoard(name);
     await createLists(boardData, boardData.length - 1, dispatch);
     return true;

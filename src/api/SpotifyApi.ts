@@ -44,7 +44,7 @@ export default class SpotifyApi {
     const name = album.slice(5);
     const url = `https://api.spotify.com/v1/search?q=album:${encodeURI(
       name
-    )}%20artist:bob%20dylan&type=album`;
+    )}%20&type=album`;
 
     const access_token = await this.getSpotifyToken();
 
